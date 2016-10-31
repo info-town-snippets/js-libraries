@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/center.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Center.html">Center</a></li>
+                                <li><a href="../classes/Scroll.html">Scroll</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/InfoTown.html">InfoTown</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: src/center.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module InfoTown
+ */
+/**
+ * Centerオブジェクト
+ *
+ * 要素を親要素の中央へ配置するための各種メソッドを提供します。
+ *
+ * @class Center
+ */
+export default (function () {
+	/**
+	 *  中央配置
+	 *
+	 *  CSSの絶対配置を使い親要素の中央へ配置します。
+	 *
+	 *  @method center
+	 *  @public
+	 *  @param {jQuery} target 中央配置するjQueryオブジェクトです。
+	 *  @param {jQuery} parent 親要素のjQueryオブジェクトです。
+	 *  @param {Object} [offset] センターからのオフセット値です。
+	 *    @param {Number} [offset.top] Y座標のオフセット値を指定します。
+	 *    @param {Number} [offset.left] X座標のオフセット値を指定します。
+	 *  @return {Object} 設定したtop, leftの値を返します。
+	 */
+	function center( target, parent, offset ) {
+		var width, height, parentWidth, parentHeight, parentCssPos, offsetX, offsetY;
+
+		target = (target instanceof jQuery) ? target : $( target );
+		parent = parent || target.parent().get( 0 );
+		parent = (parent instanceof jQuery) ? parent : $( parent );
+
+		width = target.width();
+		height = target.height();
+
+		/* 要素親のサイズとpositionプロパティ設定 */
+		if ( parent.get( 0 ) === $( &#x27;body&#x27; ).get( 0 ) ) {
+			/* 親要素がbody */
+			parentWidth = $( window ).width();
+			parentHeight = $( window ).height();
+		} else {
+			/* 親要素がbody以外 */
+			parentWidth = parent.width();
+			parentHeight = parent.height();
+			parentCssPos = parent.css( &#x27;position&#x27; );
+			if ( (parentCssPos !== &#x27;absolute&#x27;) &amp;&amp; (parentCssPos !== &#x27;relative&#x27;) ) {
+				parent.css( {
+					position: &#x27;relative&#x27;
+				} );
+			}
+		}
+		/* オフセット */
+		offsetX = (parentWidth - width) / 2;
+		offsetY = (parentHeight - height) / 2;
+		if ( typeof offset !== &quot;undefined&quot; ) {
+			offsetX = (offset.left !== &quot;undefined&quot; &amp;&amp; typeof offset.left === &quot;number&quot; ) ? offsetX + offset.left : offsetX;
+			offsetY = (offset.top !== &quot;undefined&quot; &amp;&amp; typeof offset.top === &quot;number&quot; ) ? offsetY + offset.top : offsetY;
+		}
+		target.css( {
+			position: &#x27;absolute&#x27;,
+			top: offsetY,
+			left: offsetX
+		} );
+		return {
+			top: offsetY,
+			left: offsetX
+		};
+	}
+
+	/**
+	 *  オフセット取得
+	 *
+	 *  target要素をparent要素の中央へ配置するために
+	 *  CSSのtop, leftプロパティへ設定すべき値を取得します。
+	 *
+	 *  @method getOffset
+	 *  @public
+	 *  @param {jQuery} target 中央配置するjQueryオブジェクトです。
+	 *  @param {jQuery} parent 親のjQueryオブジェクトです。
+	 *  @return {Object} CSSのtop, leftプロパティへ設定すべき値を返します。
+	 */
+	function getOffset( target, parent ) {
+		var width, height, parentWidth, parentHeight;
+		target = (target instanceof jQuery) ? target : $( target );
+		if ( typeof parent === &quot;undefined&quot; ) {
+			parent = $( &quot;body&quot; );
+		} else {
+			parent = (parent instanceof jQuery) ? parent : $( parent );
+		}
+		/* 要素のサイズ取得 */
+		width = target.width();
+		height = target.height();
+		/* 要素親のサイズ取得 */
+		parentWidth = parent.width();
+		parentHeight = parent.height();
+		/* オフセット */
+		return {
+			&quot;x&quot;: (parentWidth - width ) / 2,
+			&quot;y&quot;: (parentHeight - height) / 2
+		};
+	}
+
+	/* パブリックメソッド */
+	return {
+		center: center,
+		getOffset: getOffset
+	};
+})();
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

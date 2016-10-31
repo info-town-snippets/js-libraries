@@ -1,0 +1,13 @@
+{
+  "name": "infotown_js_lib",
+  "version": "0.9.0",
+  "description": "InfoTown JavaScript libraries.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify -v -t babelify src/index.js -o ./dist/info-town.js",
+    "min": "uglifyjs ./dist/info-town.js -o ./dist/info-town.min.js",
+    "docs": "yuidoc -o ./docs ./src"
+  },
+  "author": "Hiroshi Sawai"
+}

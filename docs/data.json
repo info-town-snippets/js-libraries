@@ -1,0 +1,212 @@
+{
+    "project": {},
+    "files": {
+        "src/center.js": {
+            "name": "src/center.js",
+            "modules": {
+                "InfoTown": 1
+            },
+            "classes": {
+                "Center": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/mobile.js": {
+            "name": "src/mobile.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/scroll.js": {
+            "name": "src/scroll.js",
+            "modules": {},
+            "classes": {
+                "Scroll": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "InfoTown": {
+            "name": "InfoTown",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Center": 1,
+                "Scroll": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/scroll.js",
+            "line": 4
+        }
+    },
+    "classes": {
+        "Center": {
+            "name": "Center",
+            "shortname": "Center",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "InfoTown",
+            "namespace": "",
+            "file": "src/center.js",
+            "line": 4,
+            "description": "Centerオブジェクト\n\n要素を親要素の中央へ配置するための各種メソッドを提供します。"
+        },
+        "Scroll": {
+            "name": "Scroll",
+            "shortname": "Scroll",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "InfoTown",
+            "namespace": "",
+            "file": "src/scroll.js",
+            "line": 4,
+            "description": "Scrollオブジェクト\n\nスクロールを管理します。"
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src/center.js",
+            "line": 12,
+            "description": "中央配置\n\nCSSの絶対配置を使い親要素の中央へ配置します。",
+            "itemtype": "method",
+            "name": "center",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "中央配置するjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "parent",
+                    "description": "親要素のjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "offset",
+                    "description": "センターからのオフセット値です。",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "top",
+                            "description": "Y座標のオフセット値を指定します。",
+                            "type": "Number",
+                            "optional": true
+                        },
+                        {
+                            "name": "left",
+                            "description": "X座標のオフセット値を指定します。",
+                            "type": "Number",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "設定したtop, leftの値を返します。",
+                "type": "Object"
+            },
+            "class": "Center",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/center.js",
+            "line": 70,
+            "description": "オフセット取得\n\ntarget要素をparent要素の中央へ配置するために\nCSSのtop, leftプロパティへ設定すべき値を取得します。",
+            "itemtype": "method",
+            "name": "getOffset",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "中央配置するjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "parent",
+                    "description": "親のjQueryオブジェクトです。",
+                    "type": "JQuery"
+                }
+            ],
+            "return": {
+                "description": "CSSのtop, leftプロパティへ設定すべき値を返します。",
+                "type": "Object"
+            },
+            "class": "Center",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/mobile.js",
+            "line": 1,
+            "description": "モバイルナビゲーション処理(768未満)",
+            "class": "Scroll",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/scroll.js",
+            "line": 12,
+            "description": "スクロール\n\n引数で指定したオブジェクト上端へスクロールします。",
+            "itemtype": "method",
+            "name": "scroll",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "key/value pair",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "スクロール先のjQueryオブジェクトです。",
+                            "type": "JQuery"
+                        },
+                        {
+                            "name": "speed",
+                            "description": "スクロールのスピードです。",
+                            "type": "Int"
+                        }
+                    ]
+                },
+                {
+                    "name": "callback",
+                    "description": "スクロール完了後のコールバック関数です。",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "デフォルト処理をキャンセルするためfalseを返します。",
+                "type": "Boolean"
+            },
+            "class": "Scroll",
+            "module": "InfoTown"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/scroll.js:12"
+        },
+        {
+            "message": "Missing item type\nモバイルナビゲーション処理(768未満)",
+            "line": " src/mobile.js:1"
+        }
+    ]
+}
