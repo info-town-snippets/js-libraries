@@ -197,6 +197,13 @@
             },
             "class": "Scroll",
             "module": "InfoTown"
+        },
+        {
+            "file": "src/scroll.js",
+            "line": 39,
+            "description": "アンカーに対してページ内スクロール設定",
+            "class": "Scroll",
+            "module": "InfoTown"
         }
     ],
     "warnings": [
@@ -207,6 +214,10 @@
         {
             "message": "Missing item type\nモバイルナビゲーション処理(768未満)",
             "line": " src/mobile.js:1"
+        },
+        {
+            "message": "Missing item type\nアンカーに対してページ内スクロール設定",
+            "line": " src/scroll.js:39"
         }
     ]
 }

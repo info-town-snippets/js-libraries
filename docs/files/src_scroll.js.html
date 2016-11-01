@@ -107,7 +107,7 @@ export default (function () {
 	 * @returns {boolean} デフォルト処理をキャンセルするためfalseを返します。
 	 */
 	function scroll( params, callback ) {
-		var target, speed, position;
+		let target, speed, position;
 		params.target = params.target || $( &#x27;html&#x27; );
 		target = (params.target instanceof jQuery) ? params.target : $( params.target );
 		speed = params.speed || 400;
@@ -120,9 +120,26 @@ export default (function () {
 		return false;
 	}
 
+	/**
+	 * アンカーに対してページ内スクロール設定
+	 */
+	function anchor( isScroll ) {
+		if ( isScroll ) {
+			$( &#x27;a[href^=&quot;#&quot;]&#x27; ).on( &#x27;click&#x27;, function () {
+				const speed = 400;
+				let href = $( this ).attr( &#x27;href&#x27; );
+				let target = $( href === &#x27;#&#x27; || href === &#x27;&#x27; ? &#x27;html&#x27; : href );
+				let position = target.offset().top;
+				$( &#x27;body,html&#x27; ).animate( { scrollTop: position }, speed, &#x27;swing&#x27; );
+				return false;
+			} );
+		}
+	}
+
 	/* パブリックメソッド */
 	return {
-		scroll: scroll
+		scroll: scroll,
+		anchor: anchor
 	};
 })();
 

@@ -164,7 +164,9 @@ exports.default = function () {
   * @returns {boolean} デフォルト処理をキャンセルするためfalseを返します。
   */
 	function scroll(params, callback) {
-		var target, speed, position;
+		var target = void 0,
+		    speed = void 0,
+		    position = void 0;
 		params.target = params.target || $('html');
 		target = params.target instanceof jQuery ? params.target : $(params.target);
 		speed = params.speed || 400;
@@ -177,9 +179,26 @@ exports.default = function () {
 		return false;
 	}
 
+	/**
+  * アンカーに対してページ内スクロール設定
+  */
+	function anchor(isScroll) {
+		if (isScroll) {
+			$('a[href^="#"]').on('click', function () {
+				var speed = 400;
+				var href = $(this).attr('href');
+				var target = $(href === '#' || href === '' ? 'html' : href);
+				var position = target.offset().top;
+				$('body,html').animate({ scrollTop: position }, speed, 'swing');
+				return false;
+			});
+		}
+	}
+
 	/* パブリックメソッド */
 	return {
-		scroll: scroll
+		scroll: scroll,
+		anchor: anchor
 	};
 }();
 
