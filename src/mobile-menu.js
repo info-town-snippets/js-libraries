@@ -15,14 +15,14 @@ export default (function () {
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
 	 */
 	function init( toggle, body ) {
-		$( toggle ).on( "click", function () {
-			$( this ).toggleClass( "active" );
-			const display = body.css( "display" );
-			if ( "none" === display ) {
-				body.fadeToggle( 600, "swing" );
+		$( toggle ).on( 'click', function () {
+			$( this ).toggleClass( 'active' );
+			const display = body.css( 'display' );
+			if ( 'none' === display ) {
+				body.fadeToggle( 600, 'swing' );
 			}
-			if ( "block" === display ) {
-				body.fadeToggle( 600, "swing" );
+			if ( 'block' === display ) {
+				body.fadeToggle( 600, 'swing' );
 			}
 		} );
 	}
@@ -36,9 +36,9 @@ export default (function () {
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
 	 */
 	function close( toggle, body ) {
-		$( "a", body ).on( 'click', function () {
+		$( 'a', body ).on( 'click', function () {
 			$( body ).hide();
-			$( toggle ).toggleClass( "active" );
+			$( toggle ).toggleClass( 'active' );
 		} );
 	}
 

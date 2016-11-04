@@ -52,9 +52,25 @@ export default (function () {
 		}
 	}
 
+	function show2ndView( elem, className ) {
+		const scrollValue = $( window ).scrollTop();
+		const windowHeight = $( window ).height();
+		elem = (elem instanceof jQuery) ? elem : $( elem );
+		if ( scrollValue > windowHeight ) {
+			if ( !elem.hasClass( className ) ) {
+				elem.addClass( className );
+			}
+		} else {
+			if ( elem.hasClass( className ) ) {
+				elem.removeClass( className );
+			}
+		}
+	}
+
 	/* パブリックメソッド */
 	return {
 		scroll: scroll,
-		anchor: anchor
+		anchor: anchor,
+		show2ndView: show2ndView
 	};
 })();

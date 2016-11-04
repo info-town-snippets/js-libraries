@@ -138,7 +138,7 @@ window.InfoTown = {
 };
 
 },{"./center.js":1,"./mobile-menu.js":3,"./scroll.js":4}],3:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -161,14 +161,14 @@ exports.default = function () {
   * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
   */
 	function init(toggle, body) {
-		$(toggle).on("click", function () {
-			$(this).toggleClass("active");
-			var display = body.css("display");
-			if ("none" === display) {
-				body.fadeToggle(600, "swing");
+		$(toggle).on('click', function () {
+			$(this).toggleClass('active');
+			var display = body.css('display');
+			if ('none' === display) {
+				body.fadeToggle(600, 'swing');
 			}
-			if ("block" === display) {
-				body.fadeToggle(600, "swing");
+			if ('block' === display) {
+				body.fadeToggle(600, 'swing');
 			}
 		});
 	}
@@ -182,9 +182,9 @@ exports.default = function () {
   * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
   */
 	function close(toggle, body) {
-		$("a", body).on('click', function () {
+		$('a', body).on('click', function () {
 			$(body).hide();
-			$(toggle).toggleClass("active");
+			$(toggle).toggleClass('active');
 		});
 	}
 
@@ -288,10 +288,26 @@ exports.default = function () {
 		}
 	}
 
+	function show2ndView(elem, className) {
+		var scrollValue = $(window).scrollTop();
+		var windowHeight = $(window).height();
+		elem = elem instanceof jQuery ? elem : $(elem);
+		if (scrollValue > windowHeight) {
+			if (!elem.hasClass(className)) {
+				elem.addClass(className);
+			}
+		} else {
+			if (elem.hasClass(className)) {
+				elem.removeClass(className);
+			}
+		}
+	}
+
 	/* パブリックメソッド */
 	return {
 		scroll: scroll,
-		anchor: anchor
+		anchor: anchor,
+		show2ndView: show2ndView
 	};
 }();
 
