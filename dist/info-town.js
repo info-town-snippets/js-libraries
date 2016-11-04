@@ -125,20 +125,20 @@ var _scroll = require('./scroll.js');
 
 var _scroll2 = _interopRequireDefault(_scroll);
 
-var _mobile = require('./mobile.js');
+var _mobileMenu = require('./mobile-menu.js');
 
-var _mobile2 = _interopRequireDefault(_mobile);
+var _mobileMenu2 = _interopRequireDefault(_mobileMenu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.InfoTown = {
 	center: _center2.default,
 	scroll: _scroll2.default,
-	mobile: _mobile2.default
+	mobileMenu: _mobileMenu2.default
 };
 
-},{"./center.js":1,"./mobile.js":3,"./scroll.js":4}],3:[function(require,module,exports){
-'use strict';
+},{"./center.js":1,"./mobile-menu.js":3,"./scroll.js":4}],3:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -153,38 +153,75 @@ Object.defineProperty(exports, "__esModule", {
  */
 exports.default = function () {
 	/**
-  * モバイルメニュー設定
-  * 
-  * @method setMenu
-  * @public
+  * 初期化
+  *
+  * @method init
+  * @private
   * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
   * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
   */
-	function setMenu(toggle, body) {
-		$(toggle).on('click', function () {
-			$(this).toggleClass('active');
+	function init(toggle, body) {
+		$(toggle).on("click", function () {
+			$(this).toggleClass("active");
 			var display = body.css("display");
 			if ("none" === display) {
-				body.fadeToggle(600, 'swing');
+				body.fadeToggle(600, "swing");
 			}
 			if ("block" === display) {
-				body.fadeToggle(600, 'swing');
+				body.fadeToggle(600, "swing");
 			}
 		});
 	}
 
-	function setBreakPoint(toggle, body) {
+	/**
+  * 閉じる設定
+  *
+  * @method close
+  * @private
+  * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+  * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+  */
+	function close(toggle, body) {
+		$("a", body).on('click', function () {
+			$(body).hide();
+			$(toggle).toggleClass("active");
+		});
+	}
+
+	/**
+  * 設定
+  *
+  * @method set
+  * @public
+  * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+  * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+  */
+	function set(toggle, body) {
+		init(toggle, body);
+		close(toggle, body);
+	}
+
+	/**
+  * リサイズ処理
+  *
+  * @method set
+  * @public
+  * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+  * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+  * @param {Number} breakpoint ブレークポイントです。
+  */
+	function setResize(toggle, body, breakpoint) {
 		$(window).on('resize', function () {
-			if ($(window).width() < 768) {
-				$(".site-nav__item a").on('click', function () {
-					$(".site-nav__body").hide();
-					$(".site-nav__close").hide();
-				});
+			if ($(window).width() < breakpoint) {
+				$(toggle).show();
+				$(body).show();
 			}
 		});
 	}
+
 	return {
-		setMenu: setMenu
+		set: set,
+		setResize: setResize
 	};
 }();
 
