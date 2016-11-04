@@ -1,12 +1,10 @@
 /**
- * @module InfoTown
- */
-/**
  * Centerオブジェクト
  *
  * 要素を親要素の中央へ配置するための各種メソッドを提供します。
  *
  * @class Center
+ * @module InfoTown
  */
 export default (function () {
 	/**

@@ -3,7 +3,8 @@
  *
  * モバイル固有の基本処理を提供しています。
  *
- * @class Mobile
+ * @class MobileMenu
+ * @module InfoTown
  */
 export default (function () {
 	/**
@@ -13,10 +14,11 @@ export default (function () {
 	 * @private
 	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 * @param {String} cssName メニュー表示させるためのクラス名です。
 	 */
-	function init( toggle, body ) {
+	function init( toggle, body, cssName ) {
 		$( toggle ).on( 'click', function () {
-			$( this ).toggleClass( 'active' );
+			$( this ).toggleClass( cssName );
 			const display = body.css( 'display' );
 			if ( 'none' === display ) {
 				body.fadeToggle( 600, 'swing' );
@@ -50,15 +52,15 @@ export default (function () {
 	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
 	 */
-	function set( toggle, body ) {
-		init( toggle, body );
+	function set( toggle, body, cssName ) {
+		init( toggle, body, cssName );
 		close( toggle, body );
 	}
 
 	/**
 	 * リサイズ処理
 	 *
-	 * @method set
+	 * @method setResize
 	 * @public
 	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。

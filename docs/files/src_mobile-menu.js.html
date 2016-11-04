@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/mobile.js</title>
+    <title>src/mobile-menu.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -39,6 +39,7 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/Center.html">Center</a></li>
+                                <li><a href="../classes/MobileMenu.html">MobileMenu</a></li>
                                 <li><a href="../classes/Scroll.html">Scroll</a></li>
                             </ul>
                 
@@ -78,34 +79,91 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src/mobile.js</h1>
+<h1 class="file-heading">File: src/mobile-menu.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * モバイルナビゲーション処理(768未満)
+ * Mobile
+ *
+ * モバイル固有の基本処理を提供しています。
+ *
+ * @class MobileMenu
+ * @module InfoTown
  */
-jQuery( function ( $ ) {
-	$( &quot;.site-nav__switch&quot; ).on( &#x27;click&#x27;, function () {
-		var display = $( &quot;.site-nav__body&quot; ).css( &quot;display&quot; );
-		if ( &quot;none&quot; === display ) {
-			$( &#x27;i&#x27;, this ).replaceWith( &#x27;&lt;i class=&quot;fa fa-2x fa-times&quot;&gt;&lt;/i&gt;&#x27; );
-			$( &quot;.site-nav__body&quot; ).fadeToggle( 400, &#x27;swing&#x27; );
-		}
-		if ( &quot;block&quot; === display ) {
-			$( &#x27;i&#x27;, this ).replaceWith( &#x27;&lt;i class=&quot;fa fa-2x fa-bars&quot;&gt;&lt;/i&gt;&#x27; );
-			$( &quot;.site-nav__body&quot; ).hide();
-		}
-	} );
-	$( window ).on( &#x27;resize&#x27;, function () {
-		if ( $( window ).width() &lt; 768 ) {
-			$( &quot;.site-nav__item a&quot; ).on( &#x27;click&#x27;, function () {
-				$( &quot;.site-nav__body&quot; ).hide();
-				$( &quot;.site-nav__close&quot; ).hide();
-			} );
-		}
-	} );
-} );
+export default (function () {
+	/**
+	 * 初期化
+	 *
+	 * @method init
+	 * @private
+	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 */
+	function init( toggle, body ) {
+		$( toggle ).on( &#x27;click&#x27;, function () {
+			$( this ).toggleClass( &#x27;active&#x27; );
+			const display = body.css( &#x27;display&#x27; );
+			if ( &#x27;none&#x27; === display ) {
+				body.fadeToggle( 600, &#x27;swing&#x27; );
+			}
+			if ( &#x27;block&#x27; === display ) {
+				body.fadeToggle( 600, &#x27;swing&#x27; );
+			}
+		} );
+	}
+
+	/**
+	 * 閉じる設定
+	 *
+	 * @method close
+	 * @private
+	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 */
+	function close( toggle, body ) {
+		$( &#x27;a&#x27;, body ).on( &#x27;click&#x27;, function () {
+			$( body ).hide();
+			$( toggle ).toggleClass( &#x27;active&#x27; );
+		} );
+	}
+
+	/**
+	 * 設定
+	 *
+	 * @method set
+	 * @public
+	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 */
+	function set( toggle, body ) {
+		init( toggle, body );
+		close( toggle, body );
+	}
+
+	/**
+	 * リサイズ処理
+	 *
+	 * @method setResize
+	 * @public
+	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
+	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 * @param {Number} breakpoint ブレークポイントです。
+	 */
+	function setResize( toggle, body, breakpoint ) {
+		$( window ).on( &#x27;resize&#x27;, function () {
+			if ( $( window ).width() &lt; breakpoint ) {
+				$( toggle ).show();
+				$( body ).show();
+			}
+		} );
+	}
+
+	return {
+		set: set,
+		setResize: setResize
+	}
+}());
     </pre>
 </div>
                     </div>

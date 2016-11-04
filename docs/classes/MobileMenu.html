@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Center</title>
+    <title>MobileMenu</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,12 +79,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Center Class</h1>
+<h1>MobileMenu Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_center.js.html#l1"><code>src&#x2F;center.js:1</code></a>
+            Defined in: <a href="../files/src_mobile-menu.js.html#l1"><code>src&#x2F;mobile-menu.js:1</code></a>
         </div>
 
             Module: <a href="../modules/InfoTown.html">InfoTown</a>
@@ -93,8 +93,8 @@
 
 
 <div class="box intro">
-    <p>Centerオブジェクト</p>
-<p>要素を親要素の中央へ配置するための各種メソッドを提供します。</p>
+    <p>Mobile</p>
+<p>モバイル固有の基本処理を提供しています。</p>
 
 </div>
 
@@ -114,12 +114,20 @@
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
-                            <li class="index-item method public">
-                                <a href="#method_center">center</a>
+                            <li class="index-item method private">
+                                <a href="#method_close">close</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_init">init</a>
 
                             </li>
                             <li class="index-item method public">
-                                <a href="#method_getOffset">getOffset</a>
+                                <a href="#method_set">set</a>
+
+                            </li>
+                            <li class="index-item method public">
+                                <a href="#method_setResize">setResize</a>
 
                             </li>
                     </ul>
@@ -132,29 +140,23 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_center" class="method item public">
-    <h3 class="name"><code>center</code></h3>
+<div id="method_close" class="method item private">
+    <h3 class="name"><code>close</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>target</code>
+                        <code>toggle</code>
                 </li>
                 <li class="arg">
-                        <code>parent</code>
-                </li>
-                <li class="arg">
-                        <code class="optional">[offset]</code>
+                        <code>body</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
 
 
-        <span class="flag public">public</span>
+        <span class="flag private">private</span>
 
 
 
@@ -163,7 +165,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_center.js.html#l10"><code>src&#x2F;center.js:10</code></a>
+        <a href="../files/src_mobile-menu.js.html#l31"><code>src&#x2F;mobile-menu.js:31</code></a>
         </p>
 
 
@@ -171,8 +173,7 @@
     </div>
 
     <div class="description">
-        <p>中央配置</p>
-<p>CSSの絶対配置を使い親要素の中央へ配置します。</p>
+        <p>閉じる設定</p>
 
     </div>
 
@@ -181,95 +182,116 @@
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">target</code>
+                        <code class="param-name">toggle</code>
                         <span class="type">JQuery</span>
 
 
                     <div class="param-description">
-                        <p>中央配置するjQueryオブジェクトです。</p>
+                        <p>メニュー開閉機構のjQueryオブジェクトです。</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name">parent</code>
+                        <code class="param-name">body</code>
                         <span class="type">JQuery</span>
 
 
                     <div class="param-description">
-                        <p>親要素のjQueryオブジェクトです。</p>
+                        <p>メニュー本体のラッパーオブジェクトです。</p>
 
                     </div>
 
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[offset]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        <p>センターからのオフセット値です。</p>
-
-                    </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                    <code class="param-name optional">[top]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>Y座標のオフセット値を指定します。</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name optional">[left]</code>
-                                    <span class="type">Number</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>X座標のオフセット値を指定します。</p>
-
-                                </div>
-
-                            </li>
-                        </ul>
                 </li>
             </ul>
         </div>
 
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type">Object</span>:
-                    <p>設定したtop, leftの値を返します。</p>
-
-            </div>
-        </div>
 
 
 </div>
-<div id="method_getOffset" class="method item public">
-    <h3 class="name"><code>getOffset</code></h3>
+<div id="method_init" class="method item private">
+    <h3 class="name"><code>init</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>target</code>
+                        <code>toggle</code>
                 </li>
                 <li class="arg">
-                        <code>parent</code>
+                        <code>body</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_mobile-menu.js.html#l10"><code>src&#x2F;mobile-menu.js:10</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>初期化</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">toggle</code>
+                        <span class="type">JQuery</span>
+
+
+                    <div class="param-description">
+                        <p>メニュー開閉機構のjQueryオブジェクトです。</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">body</code>
+                        <span class="type">JQuery</span>
+
+
+                    <div class="param-description">
+                        <p>メニュー本体のラッパーオブジェクトです。</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_set" class="method item public">
+    <h3 class="name"><code>set</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>toggle</code>
+                </li>
+                <li class="arg">
+                        <code>body</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
 
 
         <span class="flag public">public</span>
@@ -281,7 +303,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_center.js.html#l68"><code>src&#x2F;center.js:68</code></a>
+        <a href="../files/src_mobile-menu.js.html#l46"><code>src&#x2F;mobile-menu.js:46</code></a>
         </p>
 
 
@@ -289,9 +311,7 @@
     </div>
 
     <div class="description">
-        <p>オフセット取得</p>
-<p>target要素をparent要素の中央へ配置するために
-CSSのtop, leftプロパティへ設定すべき値を取得します。</p>
+        <p>設定</p>
 
     </div>
 
@@ -300,23 +320,23 @@ CSSのtop, leftプロパティへ設定すべき値を取得します。</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">target</code>
+                        <code class="param-name">toggle</code>
                         <span class="type">JQuery</span>
 
 
                     <div class="param-description">
-                        <p>中央配置するjQueryオブジェクトです。</p>
+                        <p>メニュー開閉機構のjQueryオブジェクトです。</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name">parent</code>
+                        <code class="param-name">body</code>
                         <span class="type">JQuery</span>
 
 
                     <div class="param-description">
-                        <p>親のjQueryオブジェクトです。</p>
+                        <p>メニュー本体のラッパーオブジェクトです。</p>
 
                     </div>
 
@@ -324,15 +344,89 @@ CSSのtop, leftプロパティへ設定すべき値を取得します。</p>
             </ul>
         </div>
 
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                        <span class="type">Object</span>:
-                    <p>CSSのtop, leftプロパティへ設定すべき値を返します。</p>
 
-            </div>
+</div>
+<div id="method_setResize" class="method item public">
+    <h3 class="name"><code>setResize</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>toggle</code>
+                </li>
+                <li class="arg">
+                        <code>body</code>
+                </li>
+                <li class="arg">
+                        <code>breakpoint</code>
+                </li>
+            </ul><span class="paren">)</span>
         </div>
+
+
+
+        <span class="flag public">public</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_mobile-menu.js.html#l59"><code>src&#x2F;mobile-menu.js:59</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>リサイズ処理</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">toggle</code>
+                        <span class="type">JQuery</span>
+
+
+                    <div class="param-description">
+                        <p>メニュー開閉機構のjQueryオブジェクトです。</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">body</code>
+                        <span class="type">JQuery</span>
+
+
+                    <div class="param-description">
+                        <p>メニュー本体のラッパーオブジェクトです。</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">breakpoint</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>ブレークポイントです。</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
 
 
 </div>

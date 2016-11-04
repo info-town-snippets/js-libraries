@@ -1,12 +1,10 @@
 /**
- * @module InfoTown
- */
-/**
  * Scrollオブジェクト
  *
  * スクロールを管理します。
  *
  * @class Scroll
+ * @module InfoTown
  */
 export default (function () {
 	/**

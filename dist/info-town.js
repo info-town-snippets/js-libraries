@@ -6,14 +6,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 /**
- * @module InfoTown
- */
-/**
  * Centerオブジェクト
  *
  * 要素を親要素の中央へ配置するための各種メソッドを提供します。
  *
  * @class Center
+ * @module InfoTown
  */
 exports.default = function () {
 	/**
@@ -149,7 +147,8 @@ Object.defineProperty(exports, "__esModule", {
  *
  * モバイル固有の基本処理を提供しています。
  *
- * @class Mobile
+ * @class MobileMenu
+ * @module InfoTown
  */
 exports.default = function () {
 	/**
@@ -159,10 +158,11 @@ exports.default = function () {
   * @private
   * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
   * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+  * @param {String} cssName メニュー表示させるためのクラス名です。
   */
-	function init(toggle, body) {
+	function init(toggle, body, cssName) {
 		$(toggle).on('click', function () {
-			$(this).toggleClass('active');
+			$(this).toggleClass(cssName);
 			var display = body.css('display');
 			if ('none' === display) {
 				body.fadeToggle(600, 'swing');
@@ -196,15 +196,15 @@ exports.default = function () {
   * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
   * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
   */
-	function set(toggle, body) {
-		init(toggle, body);
+	function set(toggle, body, cssName) {
+		init(toggle, body, cssName);
 		close(toggle, body);
 	}
 
 	/**
   * リサイズ処理
   *
-  * @method set
+  * @method setResize
   * @public
   * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
   * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
@@ -233,14 +233,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 /**
- * @module InfoTown
- */
-/**
  * Scrollオブジェクト
  *
  * スクロールを管理します。
  *
  * @class Scroll
+ * @module InfoTown
  */
 exports.default = function () {
 	/**

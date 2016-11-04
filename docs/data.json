@@ -12,10 +12,12 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/mobile.js": {
-            "name": "src/mobile.js",
+        "src/mobile-menu.js": {
+            "name": "src/mobile-menu.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "MobileMenu": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -36,13 +38,15 @@
             "elements": {},
             "classes": {
                 "Center": 1,
+                "MobileMenu": 1,
                 "Scroll": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
             "file": "src/scroll.js",
-            "line": 4
+            "line": 1,
+            "description": "Centerオブジェクト\n\n要素を親要素の中央へ配置するための各種メソッドを提供します。"
         }
     },
     "classes": {
@@ -55,10 +59,23 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "InfoTown",
-            "namespace": "",
             "file": "src/center.js",
-            "line": 4,
+            "line": 1,
             "description": "Centerオブジェクト\n\n要素を親要素の中央へ配置するための各種メソッドを提供します。"
+        },
+        "MobileMenu": {
+            "name": "MobileMenu",
+            "shortname": "MobileMenu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "InfoTown",
+            "namespace": "",
+            "file": "src/mobile-menu.js",
+            "line": 1,
+            "description": "Mobile\n\nモバイル固有の基本処理を提供しています。"
         },
         "Scroll": {
             "name": "Scroll",
@@ -71,7 +88,7 @@
             "module": "InfoTown",
             "namespace": "",
             "file": "src/scroll.js",
-            "line": 4,
+            "line": 1,
             "description": "Scrollオブジェクト\n\nスクロールを管理します。"
         }
     },
@@ -79,7 +96,7 @@
     "classitems": [
         {
             "file": "src/center.js",
-            "line": 12,
+            "line": 10,
             "description": "中央配置\n\nCSSの絶対配置を使い親要素の中央へ配置します。",
             "itemtype": "method",
             "name": "center",
@@ -126,7 +143,7 @@
         },
         {
             "file": "src/center.js",
-            "line": 70,
+            "line": 68,
             "description": "オフセット取得\n\ntarget要素をparent要素の中央へ配置するために\nCSSのtop, leftプロパティへ設定すべき値を取得します。",
             "itemtype": "method",
             "name": "getOffset",
@@ -152,15 +169,105 @@
             "module": "InfoTown"
         },
         {
-            "file": "src/mobile.js",
-            "line": 1,
-            "description": "モバイルナビゲーション処理(768未満)",
-            "class": "Scroll",
+            "file": "src/mobile-menu.js",
+            "line": 10,
+            "description": "初期化",
+            "itemtype": "method",
+            "name": "init",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "toggle",
+                    "description": "メニュー開閉機構のjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "body",
+                    "description": "メニュー本体のラッパーオブジェクトです。",
+                    "type": "JQuery"
+                }
+            ],
+            "class": "MobileMenu",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/mobile-menu.js",
+            "line": 31,
+            "description": "閉じる設定",
+            "itemtype": "method",
+            "name": "close",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "toggle",
+                    "description": "メニュー開閉機構のjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "body",
+                    "description": "メニュー本体のラッパーオブジェクトです。",
+                    "type": "JQuery"
+                }
+            ],
+            "class": "MobileMenu",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/mobile-menu.js",
+            "line": 46,
+            "description": "設定",
+            "itemtype": "method",
+            "name": "set",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "toggle",
+                    "description": "メニュー開閉機構のjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "body",
+                    "description": "メニュー本体のラッパーオブジェクトです。",
+                    "type": "JQuery"
+                }
+            ],
+            "class": "MobileMenu",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/mobile-menu.js",
+            "line": 59,
+            "description": "リサイズ処理",
+            "itemtype": "method",
+            "name": "setResize",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "toggle",
+                    "description": "メニュー開閉機構のjQueryオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "body",
+                    "description": "メニュー本体のラッパーオブジェクトです。",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "breakpoint",
+                    "description": "ブレークポイントです。",
+                    "type": "Number"
+                }
+            ],
+            "class": "MobileMenu",
             "module": "InfoTown"
         },
         {
             "file": "src/scroll.js",
-            "line": 12,
+            "line": 10,
             "description": "スクロール\n\n引数で指定したオブジェクト上端へスクロールします。",
             "itemtype": "method",
             "name": "scroll",
@@ -200,7 +307,7 @@
         },
         {
             "file": "src/scroll.js",
-            "line": 39,
+            "line": 37,
             "description": "アンカーに対してページ内スクロール設定",
             "class": "Scroll",
             "module": "InfoTown"
@@ -209,15 +316,11 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scroll.js:12"
-        },
-        {
-            "message": "Missing item type\nモバイルナビゲーション処理(768未満)",
-            "line": " src/mobile.js:1"
+            "line": " src/scroll.js:10"
         },
         {
             "message": "Missing item type\nアンカーに対してページ内スクロール設定",
-            "line": " src/scroll.js:39"
+            "line": " src/scroll.js:37"
         }
     ]
 }
