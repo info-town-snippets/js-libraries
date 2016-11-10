@@ -99,10 +99,11 @@ export default (function () {
 	 * @private
 	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 * @param {String} cssName メニュー表示させるためのクラス名です。
 	 */
-	function init( toggle, body ) {
+	function init( toggle, body, cssName ) {
 		$( toggle ).on( &#x27;click&#x27;, function () {
-			$( this ).toggleClass( &#x27;active&#x27; );
+			$( this ).toggleClass( cssName );
 			const display = body.css( &#x27;display&#x27; );
 			if ( &#x27;none&#x27; === display ) {
 				body.fadeToggle( 600, &#x27;swing&#x27; );
@@ -136,8 +137,8 @@ export default (function () {
 	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
 	 */
-	function set( toggle, body ) {
-		init( toggle, body );
+	function set( toggle, body, cssName ) {
+		init( toggle, body, cssName );
 		close( toggle, body );
 	}
 

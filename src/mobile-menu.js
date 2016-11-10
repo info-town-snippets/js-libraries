@@ -36,11 +36,12 @@ export default (function () {
 	 * @private
 	 * @param {jQuery} toggle メニュー開閉機構のjQueryオブジェクトです。
 	 * @param {jQuery} body メニュー本体のラッパーオブジェクトです。
+	 * @param {String} cssName メニュー非表示させるための削除するクラス名です。
 	 */
-	function close( toggle, body ) {
+	function close( toggle, body, cssName ) {
 		$( 'a', body ).on( 'click', function () {
 			$( body ).hide();
-			$( toggle ).toggleClass( 'active' );
+			$( toggle ).toggleClass( cssName );
 		} );
 	}
 
@@ -54,7 +55,7 @@ export default (function () {
 	 */
 	function set( toggle, body, cssName ) {
 		init( toggle, body, cssName );
-		close( toggle, body );
+		close( toggle, body, cssName );
 	}
 
 	/**

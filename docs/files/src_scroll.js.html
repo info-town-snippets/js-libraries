@@ -121,6 +121,10 @@ export default (function () {
 
 	/**
 	 * アンカーに対してページ内スクロール設定
+	 *
+	 * @method anchor
+	 * @public
+	 * @param {Boolean} isScroll ページ内スクロールを設定するときはtrueを指定します。
 	 */
 	function anchor( isScroll ) {
 		if ( isScroll ) {
@@ -135,6 +139,53 @@ export default (function () {
 		}
 	}
 
+	/**
+	 * スクロールスパイ
+	 *
+	 * スクロールを監視します。
+	 *
+	 * @method scrollSpy
+	 * @public
+	 * @param {Array} toggle スクロールを受けて変化するトッグルのjQueryオフジェクトの配列です。
+	 * @param {Array} targets 監視対象のjQueryオブジェクトです。
+	 * @returns {Function} スクロールイベントへ設定する関数です。
+	 */
+	function scrollSpy( toggle, targets ) {
+		var props = [];
+		targets.forEach( function ( elem, index ) {
+			props.push( { &#x27;id&#x27;: $( toggle[index] ).attr( &#x27;id&#x27; ), &#x27;top&#x27;: $( elem ).offset().top } );
+		} );
+		return function () {
+			let scroll = $( document ).scrollTop();
+			$( toggle ).each( function () {
+				$( this ).removeClass( &#x27;scroll-toggle-active&#x27; );
+			} );
+			for ( var i = 0; i &lt; props.length; i++ ) {
+				if ( i == 0 ) {
+					if ( scroll &gt;= 0 &amp;&amp; scroll &lt; props[i + 1].top ) {
+						$( &#x60;#${props[i].id}&#x60; ).addClass( &quot;scroll-toggle-active&quot; );
+					}
+				} else if ( i == props.length - 1 ) {
+					if ( scroll &gt;= props[i].top ) {
+						$( &#x60;#${props[i].id}&#x60; ).addClass( &quot;scroll-toggle-active&quot; );
+					}
+				} else {
+					if ( scroll &gt;= props[i].top &amp;&amp; scroll &lt; props[i + 1].top ) {
+						$( &#x60;#${props[i].id}&#x60; ).addClass( &quot;scroll-toggle-active&quot; );
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 2ndビュー設定
+	 *
+	 * @method show2ndView
+	 * @public
+	 * @param elem
+	 * @param className
+	 */
 	function show2ndView( elem, className ) {
 		const scrollValue = $( window ).scrollTop();
 		const windowHeight = $( window ).height();
@@ -154,6 +205,7 @@ export default (function () {
 	return {
 		scroll: scroll,
 		anchor: anchor,
+		scrollSpy: scrollSpy,
 		show2ndView: show2ndView
 	};
 })();

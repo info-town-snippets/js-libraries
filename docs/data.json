@@ -186,6 +186,11 @@
                     "name": "body",
                     "description": "メニュー本体のラッパーオブジェクトです。",
                     "type": "JQuery"
+                },
+                {
+                    "name": "cssName",
+                    "description": "メニュー表示させるためのクラス名です。",
+                    "type": "String"
                 }
             ],
             "class": "MobileMenu",
@@ -193,7 +198,7 @@
         },
         {
             "file": "src/mobile-menu.js",
-            "line": 31,
+            "line": 32,
             "description": "閉じる設定",
             "itemtype": "method",
             "name": "close",
@@ -216,7 +221,7 @@
         },
         {
             "file": "src/mobile-menu.js",
-            "line": 46,
+            "line": 47,
             "description": "設定",
             "itemtype": "method",
             "name": "set",
@@ -239,7 +244,7 @@
         },
         {
             "file": "src/mobile-menu.js",
-            "line": 59,
+            "line": 60,
             "description": "リサイズ処理",
             "itemtype": "method",
             "name": "setResize",
@@ -309,6 +314,65 @@
             "file": "src/scroll.js",
             "line": 37,
             "description": "アンカーに対してページ内スクロール設定",
+            "itemtype": "method",
+            "name": "anchor",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "isScroll",
+                    "description": "ページ内スクロールを設定するときはtrueを指定します。",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Scroll",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/scroll.js",
+            "line": 57,
+            "description": "スクロールスパイ\n\nスクロールを監視します。",
+            "itemtype": "method",
+            "name": "scrollSpy",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "toggle",
+                    "description": "スクロールを受けて変化するトッグルのjQueryオフジェクトの配列です。",
+                    "type": "Array"
+                },
+                {
+                    "name": "targets",
+                    "description": "監視対象のjQueryオブジェクトです。",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "スクロールイベントへ設定する関数です。",
+                "type": "Function"
+            },
+            "class": "Scroll",
+            "module": "InfoTown"
+        },
+        {
+            "file": "src/scroll.js",
+            "line": 96,
+            "description": "2ndビュー設定",
+            "itemtype": "method",
+            "name": "show2ndView",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": ""
+                },
+                {
+                    "name": "className",
+                    "description": ""
+                }
+            ],
             "class": "Scroll",
             "module": "InfoTown"
         }
@@ -319,8 +383,8 @@
             "line": " src/scroll.js:10"
         },
         {
-            "message": "Missing item type\nアンカーに対してページ内スクロール設定",
-            "line": " src/scroll.js:37"
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/scroll.js:57"
         }
     ]
 }
