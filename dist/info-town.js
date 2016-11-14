@@ -342,7 +342,7 @@ exports.default = function () {
 		var scrollValue = $(window).scrollTop();
 		var windowHeight = $(window).height();
 		elem = elem instanceof jQuery ? elem : $(elem);
-		if (scrollValue > windowHeight) {
+		if (scrollValue >= windowHeight) {
 			if (!elem.hasClass(className)) {
 				elem.addClass(className);
 			}
